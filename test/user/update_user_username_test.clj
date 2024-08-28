@@ -1,7 +1,6 @@
 (ns user.update-user-username-test
   (:require [clojure.test :refer :all]
             [iam-clj-api.user.controller.core :refer :all]
-            [cats.monad.either :as either]
             [iam-clj-api.user.model.core :as model]))
 
 (defn setup [f]
@@ -15,4 +14,4 @@
 (deftest test-update-user-username
   (testing "Update user username"
     (let [result (update-user-username 1 "new-username")]
-      (is (= (either/right {:status 200 :body "Username updated"}) result)))))
+      (is (= {:status 200 :body "Username updated"} result)))))

@@ -1,7 +1,6 @@
 (ns user.delete-user-test
   (:require [clojure.test :refer :all]
             [iam-clj-api.user.controller.core :refer :all]
-            [cats.monad.either :as either]
             [iam-clj-api.user.model.core :as model]))
 
 (defn setup [f]
@@ -15,8 +14,8 @@
 (deftest test-delete-user
   (testing "Delete user"
     (let [result (delete-user 1)]
-      (is (= (either/right {:status 200 :body "User deleted"}) result))))
+      (is (= {:status 200 :body "User deleted"} result))))
     (testing "Delete user that does not exist"
         (let [result (delete-user 2)]
-            (is (= (either/left {:status 404 :error "User not found"}) result)))))
+            (is (= {:status 404 :error "User not found"} result)))))
 (run-tests)

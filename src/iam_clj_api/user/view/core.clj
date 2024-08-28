@@ -19,4 +19,7 @@
     (PUT "/:id/password" [id new-password]
       (controller/update-user-password id new-password))
     (DELETE "/:id" [id] (controller/delete-user id))
+    ;; User - Permission & User - Role
+    (GET "/:id/permissions" [id] (controller/get-permissions-for-user id))
+    (GET "/:id/roles" [id] (controller/get-roles-for-user id))
     ))

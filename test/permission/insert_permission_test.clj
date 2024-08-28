@@ -2,7 +2,6 @@
   (:require [clojure.test :refer :all]
             [iam-clj-api.permission.model.core :as model]
             [iam-clj-api.permission.controller.core :as controller]
-            [iam-clj-api.permission.view.core :as view]
             [lib.core :refer :all]))
 
 (defn setup [f]

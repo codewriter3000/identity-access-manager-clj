@@ -59,3 +59,17 @@
   (let [result (jdbc/execute! ds
                               ["DELETE FROM users WHERE id = ?;" id])]
     {:delete-count (:next.jdbc/update-count (first result))}))
+
+(defn get-roles-for-user [id]
+  (let [result (jdbc/execute! ds
+                              ["SELECT roles.id, roles.name, roles.description FROM roles
+        JOIN users_roles ON roles.id = users_roles.role_id
+        WHERE users_roles.user_id = ?;" id])]
+    (map remove-namespace (map #(into {} %) result))))
+
+(defn get-permissions-for-user [id]
+  (let [result (jdbc/execute! ds
+                              ["SELECT permissions.id, permissions.name, permissions.description FROM permissions
+                               JOIN users_permissions ON permissions.id = users_permissions.permission_id
+                               WHERE users_permissions.user_id = ?;" id])]
+    (map remove-namespace (map #(into {} %) result))))

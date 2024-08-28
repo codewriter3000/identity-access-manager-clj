@@ -1,7 +1,6 @@
 (ns user.update-user-email-test
   (:require [clojure.test :refer :all]
             [iam-clj-api.user.controller.core :refer :all]
-            [cats.monad.either :as either]
             [iam-clj-api.user.model.core :as model]))
 
 (defn setup [f]
@@ -15,4 +14,4 @@
 (deftest test-update-user-email
   (testing "Update user email"
     (let [result (update-user-email 1 "newemail@example.com")]
-      (is (= (either/right {:status 200 :body "Email updated"}) result)))))
+      (is (= {:status 200 :body "Email updated"} result)))))

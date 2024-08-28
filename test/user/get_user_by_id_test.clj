@@ -1,7 +1,6 @@
 (ns user.get-user-by-id-test
   (:require [clojure.test :refer :all]
             [iam-clj-api.user.controller.core :refer :all]
-            [cats.monad.either :as either]
             [iam-clj-api.user.model.core :as model]))
 
 (defn setup [f]
@@ -20,5 +19,5 @@
   (testing "get-user-by-id returns a user by id"
     (let [user (model/get-user-by-id 4)
           id (get user :users/id)]
-      (is (= (either/right {:status 200 :body user})
+      (is (= {:status 200 :body user}
              (get-user-by-id id))))))

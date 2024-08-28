@@ -24,18 +24,14 @@
       (controller/add-permission-to-user (get permission :id) (get user :id))
       (let [users (get (controller/get-users-with-permission (get permission :id)) :body)]
         (is (= 1 (count users)))
-        (is (= "testuser1" (get (first users) :username)))))
-    )
+        (is (= "testuser1" (get (first users) :username))))))
 
   (testing "Add permission to user with invalid permission id"
     (let [user (user-model/get-user-by-username "testuser1")]
       (is (= "testuser1" (get user :username)))
-      (is (= {:status 400, :error "Failed to add permission to user"} (controller/add-permission-to-user 100 (get user :id)))))
-    )
+      (is (= {:status 400, :error "Failed to add permission to user"} (controller/add-permission-to-user 100 (get user :id))))))
 
   (testing "Add permission to user with invalid user id"
     (let [permission (perm-model/get-permission-by-name "test-permission")]
       (is (= "test-permission" (get permission :name)))
-      (is (= {:status 400, :error "Failed to add permission to user"} (controller/add-permission-to-user (get permission :id) 100))))
-    )
-  )
+      (is (= {:status 400, :error "Failed to add permission to user"} (controller/add-permission-to-user (get permission :id) 100))))))
