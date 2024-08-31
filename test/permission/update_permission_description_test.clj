@@ -1,7 +1,7 @@
 (ns permission.update-permission-description-test
   (:require [clojure.test :refer :all]
             [iam-clj-api.permission.controller :as controller]
-            [iam-clj-api.permission.model.core :as model]))
+            [iam-clj-api.permission.model :as model]))
 
 (defn setup [f]
   (model/drop-permission-table)

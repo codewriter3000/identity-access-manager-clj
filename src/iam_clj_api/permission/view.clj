@@ -1,4 +1,4 @@
-(ns iam-clj-api.permission.view.core
+(ns iam-clj-api.permission.view
 (:require [compojure.core :refer :all]
           [compojure.route :as route]
           [ring.middleware.defaults :refer [wrap-defaults site-defaults]]

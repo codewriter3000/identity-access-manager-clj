@@ -1,6 +1,6 @@
 (ns permission.delete-permission-test
   (:require [clojure.test :refer :all]
-            [iam-clj-api.permission.model.core :as model]
+            [iam-clj-api.permission.model :as model]
             [iam-clj-api.permission.controller :as controller]))
 
 (defn setup [f]

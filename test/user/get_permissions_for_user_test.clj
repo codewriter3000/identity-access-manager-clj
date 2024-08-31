@@ -1,7 +1,7 @@
 (ns user.get-permissions-for-user-test
   (:require [clojure.test :refer :all]
             [iam-clj-api.user.model :as user-model]
-            [iam-clj-api.permission.model.core :as permission-model]
+            [iam-clj-api.permission.model :as permission-model]
             [iam-clj-api.user.controller :as controller]))
 
 (defn setup [f]

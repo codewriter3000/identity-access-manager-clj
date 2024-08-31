@@ -1,6 +1,6 @@
 (ns permission.get-users-with-permission-test
   (:require [clojure.test :refer :all]
-            [iam-clj-api.permission.model.core :as perm-model]
+            [iam-clj-api.permission.model :as perm-model]
             [iam-clj-api.user.model :as user-model]
             [iam-clj-api.permission.controller :as controller]))
 

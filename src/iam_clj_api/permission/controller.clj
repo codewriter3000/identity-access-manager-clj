@@ -1,6 +1,6 @@
 (ns iam-clj-api.permission.controller
   (:require [lib.core :refer :all]
-            [iam-clj-api.permission.model.core :as model]))
+            [iam-clj-api.permission.model :as model]))
 
 (defn get-all-permissions []
   {:status 200 :body (model/get-all-permissions)})

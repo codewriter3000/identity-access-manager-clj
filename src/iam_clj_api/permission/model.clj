@@ -1,4 +1,4 @@
-(ns iam-clj-api.permission.model.core
+(ns iam-clj-api.permission.model
   (:require [next.jdbc :as jdbc]
             [lib.core :refer :all]))
 

@@ -3,7 +3,7 @@
             [compojure.route :as route]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
             [ring.middleware.cors :refer [wrap-cors]]
-            [iam-clj-api.user.view.view :as user-view]
+            [iam-clj-api.user.view :as user-view]
             [env :as env]
             [clojure.tools.logging :as log]))
 

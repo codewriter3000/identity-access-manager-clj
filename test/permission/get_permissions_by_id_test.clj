@@ -1,7 +1,7 @@
 (ns permission.get-permissions-by-id-test
   (:require [clojure.test :refer :all]
             [iam-clj-api.permission.controller :as controller]
-            [iam-clj-api.permission.model.core :as model]
+            [iam-clj-api.permission.model :as model]
             [lib.core :refer :all]))
 
 (defn setup [f]

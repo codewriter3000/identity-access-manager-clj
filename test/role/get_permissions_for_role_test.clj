@@ -1,7 +1,7 @@
 (ns role.get-permissions-for-role-test
   (:require [clojure.test :refer :all]
             [iam-clj-api.role.model :as role-model]
-            [iam-clj-api.permission.model.core :as perm-model]
+            [iam-clj-api.permission.model :as perm-model]
             [iam-clj-api.role.controller :as controller]))
 
 (defn setup [f]
