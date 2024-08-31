@@ -1,7 +1,7 @@
 (ns role.remove-role-from-user-test
   (:require [clojure.test :refer :all]
             [iam-clj-api.role.model :as role-model]
-            [iam-clj-api.user.model.core :as user-model]
+            [iam-clj-api.user.model :as user-model]
             [iam-clj-api.role.controller :as controller]))
 
 (defn setup [f]

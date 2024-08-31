@@ -1,8 +1,8 @@
 (ns permission.remove-permission-from-user-test
   (:require [clojure.test :refer :all]
             [iam-clj-api.permission.model.core :as perm-model]
-            [iam-clj-api.permission.controller.core :as controller]
-            [iam-clj-api.user.model.core :as user-model]))
+            [iam-clj-api.permission.controller :as controller]
+            [iam-clj-api.user.model :as user-model]))
 
 (defn setup [f]
   (perm-model/drop-permission-table)

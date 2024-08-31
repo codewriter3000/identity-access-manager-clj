@@ -1,8 +1,8 @@
-(ns iam-clj-api.user.view.core
+(ns iam-clj-api.user.view
   (:require [compojure.core :refer :all]
             [compojure.route :as route]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
-            [iam-clj-api.user.controller.core :as controller]))
+            [iam-clj-api.user.controller :as controller]))
 
 (defroutes user-view-routes
   (context "/user" []

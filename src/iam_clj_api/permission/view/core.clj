@@ -2,7 +2,7 @@
 (:require [compojure.core :refer :all]
           [compojure.route :as route]
           [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
-          [iam-clj-api.permission.controller.core :as controller]))
+          [iam-clj-api.permission.controller :as controller]))
 
 (defroutes permission-view-routes
   (context "/permission" []

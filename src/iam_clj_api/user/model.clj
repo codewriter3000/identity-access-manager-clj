@@ -1,4 +1,4 @@
-(ns iam-clj-api.user.model.core
+(ns iam-clj-api.user.model
   (:require [next.jdbc :as jdbc]
             [lib.core :refer :all]))
 

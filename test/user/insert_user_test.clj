@@ -1,7 +1,7 @@
 (ns user.insert-user-test
   (:require [clojure.test :refer :all]
-            [iam-clj-api.user.controller.core :refer :all]
-            [iam-clj-api.user.model.core :as model]))
+            [iam-clj-api.user.controller :refer :all]
+            [iam-clj-api.user.model :as model]))
 
 (defn mock-get-user-by-username [username]
   (if (= username "existinguser")

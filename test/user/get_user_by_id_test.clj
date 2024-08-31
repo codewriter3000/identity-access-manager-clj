@@ -1,7 +1,7 @@
 (ns user.get-user-by-id-test
   (:require [clojure.test :refer :all]
-            [iam-clj-api.user.controller.core :refer :all]
-            [iam-clj-api.user.model.core :as model]))
+            [iam-clj-api.user.controller :refer :all] ;;replace with model if this doesn't work
+            [iam-clj-api.user.model :as model]))
 
 (defn setup [f]
   (model/drop-user-table)

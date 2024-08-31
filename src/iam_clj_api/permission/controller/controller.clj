@@ -1,4 +1,4 @@
-(ns iam-clj-api.permission.controller.core
+(ns iam-clj-api.permission.controller
   (:require [lib.core :refer :all]
             [iam-clj-api.permission.model.core :as model]))
 

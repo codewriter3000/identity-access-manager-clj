@@ -2,7 +2,7 @@
   (:require [lib.core :refer :all]
             [iam-clj-api.role.model :as model]
             [iam-clj-api.permission.model.core :as perm-model]
-            [iam-clj-api.user.model.core :as user-model]))
+            [iam-clj-api.user.model :as user-model]))
 
 (defn get-all-roles []
     {:status 200 :body (model/get-all-roles)})

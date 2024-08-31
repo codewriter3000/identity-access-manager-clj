@@ -1,6 +1,6 @@
-(ns iam-clj-api.user.controller.core
+(ns iam-clj-api.user.controller
   (:require [lib.core :refer :all]
-            [iam-clj-api.user.model.core :as model]
+            [iam-clj-api.user.model :as model]
             [buddy.hashers :as hashers]
             ))
 

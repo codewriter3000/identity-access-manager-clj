@@ -1,6 +1,6 @@
 (ns permission.get-all-permissions-test
   (:require [clojure.test :refer :all]
-            [iam-clj-api.permission.controller.core :as controller]
+            [iam-clj-api.permission.controller :as controller]
             [iam-clj-api.permission.model.core :as model]
             [lib.core :refer :all]))
 
