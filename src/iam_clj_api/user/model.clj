@@ -1,6 +1,7 @@
 (ns iam-clj-api.user.model
   (:require [next.jdbc :as jdbc]
-            [lib.core :refer :all]))
+            [lib.core :refer :all]
+            [clojure.string :as str]))
 
 (def ds (get-datasource))
 
@@ -9,6 +10,8 @@
                  ["CREATE TABLE IF NOT EXISTS users (id SERIAL PRIMARY KEY,
       username VARCHAR(20) NOT NULL,
       email VARCHAR(256) NOT NULL,
+      first_name VARCHAR(32),
+      last_name VARCHAR(32),
       password VARCHAR(256) NOT NULL,
       created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
       );"]))
@@ -16,26 +19,38 @@
 (defn drop-user-table []
   (jdbc/execute! ds ["DROP TABLE IF EXISTS users;"]))
 
+; INSERT INTO users (:username, :email, :password) VALUES (?, ?, ?);
 (defn insert-user [user]
-  (jdbc/execute! ds
-                 ["INSERT INTO users (username, email, password, created_at)
-         VALUES (?, ?, ?, DEFAULT);"
-                  (get user :username) (get user :email) (get user :password)]))
+  (let [filtered-user (into {} (filter (comp some? val) user))
+        keys (map name (keys filtered-user)) ; Convert keys to strings
+        values (vals filtered-user)
+        columns (str/join ", " keys)
+        placeholders (str/join ", " (repeat (count values) "?"))
+        query (str "INSERT INTO users (" columns ") VALUES (" placeholders ");")]
+    (jdbc/execute! ds (into [query] values))))
 
 (defn get-all-users []
   (let [result (jdbc/execute! ds
-                              ["SELECT id, username, email FROM users;"])]
+                              ["SELECT id, username, email, first_name, last_name FROM users;"])]
     (map remove-namespace (map #(into {} %) result))))
 
 (defn get-user-by-id [id]
   (let [result (jdbc/execute! ds
-                              ["SELECT id, username, email, created_at FROM users WHERE id = ?;" id])]
+                              ["SELECT id, username, email, first_name, last_name, created_at FROM users WHERE id = ?;" id])]
     (first result)))
 
 (defn get-user-by-username [username]
   (let [result (jdbc/execute! ds
                               ["SELECT * FROM users WHERE username = ?;" username])]
     (remove-namespace (first result))))
+
+(defn update-user [id user]
+  (let [filtered-user (into {} (filter (comp some? val) user))
+        set-clause (str/join ", " (map (fn [[k v]] (str (name k) " = ?")) filtered-user))
+        values (concat (vals filtered-user) [id])
+        query (str "UPDATE users SET " set-clause " WHERE id = ?;")]
+    (let [result (jdbc/execute! ds (into [query] values))]
+      {:update-count (:next.jdbc/update-count (first result))})))
 
 (defn update-user-username [id new-username]
   (let [result (jdbc/execute! ds

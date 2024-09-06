@@ -18,5 +18,3 @@
   (testing "Login of user"
     (let [result (login-user "test" "Password1!")]
       (is (=  {:status 200 :body "Login successful"} result)))))
-
-(run-tests)

@@ -18,4 +18,3 @@
     (testing "Delete user that does not exist"
         (let [result (delete-user 2)]
             (is (= {:status 404 :error "User not found"} result)))))
-(run-tests)

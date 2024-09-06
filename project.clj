@@ -11,10 +11,11 @@
                  [buddy/buddy-hashers "1.4.0"]
                  [environ "1.2.0"]
                  [org.clojure/tools.logging "1.3.0"]
-                 [funcool/cats "2.3.0"]
-                 [environ "1.2.0"]]
+                 [metosin/ring-http-response "0.9.4"]
+                 [ring/ring-json "0.5.1"]]
   :plugins [[lein-ring "0.12.5"]
             [lein-environ "1.2.0"]]
-  :ring {:handler iam-clj-api.handler/app}
+  :ring {:handler iam-clj-api.handler/app
+         :port 8080}
   :profiles {:dev {:dependencies [[javax.servlet/servlet-api "2.5"]
                                   [ring/ring-mock "0.3.2"]]}})

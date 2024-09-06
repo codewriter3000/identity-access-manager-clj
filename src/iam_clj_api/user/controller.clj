@@ -1,8 +1,7 @@
 (ns iam-clj-api.user.controller
   (:require [lib.core :refer :all]
             [iam-clj-api.user.model :as model]
-            [buddy.hashers :as hashers]
-            ))
+            [buddy.hashers :as hashers]))
 
 (defn validate-input [username email password]
   (cond
@@ -51,7 +50,7 @@
 (defn update-user-username [id new-username]
   (let [user (model/get-user-by-id id)]
     (if user
-      (let [result (model/update-user-username id new-username)]
+      (let [result (model/update-user id {:username new-username})]
         (if (= 1 (:update-count result))
           {:status 200 :body "Username updated"}
           {:status 400 :error "Failed to update username"}))
@@ -60,7 +59,7 @@
 (defn update-user-email [id new-email]
   (let [user (model/get-user-by-id id)]
     (if user
-      (let [result (model/update-user-email id new-email)]
+      (let [result (model/update-user id {:email new-email})]
         (if (= 1 (:update-count result))
           {:status 200 :body "Email updated"}
           {:status 400 :error "Failed to update email"}))

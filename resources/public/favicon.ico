@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="192"
+   height="192"
+   viewBox="0 0 50.800001 50.8"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   sodipodi:docname="iam.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#505050"
+     bordercolor="#ffffff"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="px"
+     inkscape:zoom="4.1798822"
+     inkscape:cx="51.795719"
+     inkscape:cy="102.27561"
+     inkscape:window-width="2560"
+     inkscape:window-height="1369"
+     inkscape:window-x="2552"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <circle
+       style="fill:#0530ad;stroke-width:0;paint-order:stroke fill markers;fill-opacity:1"
+       id="path1"
+       cx="25.400002"
+       cy="25.400002"
+       r="25.400002" />
+    <path
+       style="fill:#f2f2f2;fill-opacity:1;stroke-width:0;paint-order:stroke fill markers"
+       d="M 25.4,51.432996 V 0.63299233"
+       id="path2" />
+    <path
+       style="fill:#f2f2f2;fill-opacity:1;stroke-width:0;paint-order:stroke fill markers"
+       d="M 0,25.400002 H 50.800004"
+       id="path3" />
+    <g
+       id="g3"
+       transform="translate(-2.4679718e-6,1.4819539)">
+      <rect
+         style="fill:#f2f2f2;fill-opacity:1;stroke-width:0;paint-order:stroke fill markers"
+         id="rect1-8-8"
+         width="5.7602301"
+         height="2.3812499"
+         x="21.780256"
+         y="23.018751" />
+      <rect
+         style="fill:#f2f2f2;fill-opacity:1;stroke-width:0;paint-order:stroke fill markers"
+         id="rect3"
+         width="2.3812499"
+         height="16.867708"
+         x="12.153453"
+         y="15.484194" />
+      <rect
+         style="fill:#f2f2f2;fill-opacity:1;stroke-width:0;paint-order:stroke fill markers"
+         id="rect3-7"
+         width="2.5125532"
+         height="21.451046"
+         x="27.422955"
+         y="-0.38116375"
+         transform="matrix(0.8711452,0.49102551,-0.30968752,0.95083839,0,0)" />
+      <rect
+         style="fill:#f2f2f2;fill-opacity:1;stroke-width:0;paint-order:stroke fill markers"
+         id="rect3-7-9"
+         width="2.5125532"
+         height="21.451046"
+         x="20.529423"
+         y="14.550253"
+         transform="matrix(0.99949639,-0.03173266,0.22811401,0.97363443,0,0)" />
+      <rect
+         style="fill:#f2f2f2;fill-opacity:1;stroke-width:0;paint-order:stroke fill markers"
+         id="rect3-7-8"
+         width="2.5125532"
+         height="21.451046"
+         x="39.294357"
+         y="-6.5117135"
+         transform="matrix(0.8711452,0.49102551,-0.30968752,0.95083839,0,0)" />
+      <rect
+         style="fill:#f2f2f2;fill-opacity:1;stroke-width:0;paint-order:stroke fill markers"
+         id="rect3-7-9-3"
+         width="2.5125532"
+         height="21.451046"
+         x="32.68544"
+         y="14.946442"
+         transform="matrix(0.99949639,-0.03173266,0.22811401,0.97363443,0,0)" />
+      <rect
+         style="fill:#f2f2f2;fill-opacity:1;stroke-width:0;paint-order:stroke fill markers"
+         id="rect1"
+         width="37.726345"
+         height="2.3812499"
+         x="6.5368276"
+         y="13.102944"
+         inkscape:label="rect1" />
+      <rect
+         style="fill:#f2f2f2;fill-opacity:1;stroke-width:0;paint-order:stroke fill markers"
+         id="rect1-8"
+         width="37.726345"
+         height="2.3812499"
+         x="6.5368328"
+         y="32.351902" />
+    </g>
+  </g>
+</svg>

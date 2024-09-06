@@ -33,5 +33,3 @@
            (validate-input "username" "invalid-email" "Password1!")))
     (is (= {:status 400 :error "Username already exists"}
            (validate-input "existinguser" "test@example.com" "Password1!")))))
-
-(run-tests)
