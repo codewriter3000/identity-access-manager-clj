@@ -1,35 +1,37 @@
 (ns iam-clj-api.user.controller
   (:require [lib.core :refer :all]
             [iam-clj-api.user.model :as model]
-            [buddy.hashers :as hashers]))
+            [buddy.hashers :as hashers]
+            [lib.response :refer [error success work]]))
 
-(defn validate-input [username email password]
-  (cond
-    (or (empty? username) (empty? email) (empty? password))
-    {:status 400 :error "All fields are required"}
+(defn validate-input [user]
+  (let [username (get user :username)
+        email (get user :email)
+        password (get user :password)]
+    (cond
+      (not (re-matches #"(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}" password))
+      (error 400 "Password must be at least 8 characters long, contain an uppercase letter, a lowercase letter, a number, and a special character")
 
-    (not (re-matches #"(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}" password))
-    {:status 400 :error "Password must be at least 8 characters long, contain an uppercase letter, a lowercase letter, a number, and a special character"}
+      (or (< (count username) 3) (> (count username) 20))
+      (error 400 "Username must be between 3 and 20 characters")
 
-    (or (< (count username) 3) (> (count username) 20))
-    {:status 400 :error "Username must be between 3 and 20 characters"}
+      (not (re-matches #".+@.+\..+" email))
+      (error 400 "Email is invalid")
 
-    (not (re-matches #".+@.+\..+" email))
-    {:status 400 :error "Invalid email address"}
+      (not (empty? (model/get-user-by-username username)))
+      (error 400 "Username already exists")
 
-    (some? (model/get-user-by-username username))
-    {:status 400 :error "Username already exists"}
+      :else
+      (assoc user :password (hashers/derive (get user :password))))))
 
-    :else
-    {:username username :email email :password password}))
-
-(defn insert-user [username email password]
-  (let [validated-input (validate-input username email password)]
-          (let [{:keys [username email password]} validated-input
-                password-hash (hashers/derive password)
-                user {:username username :email email :password password-hash}]
-            (model/insert-user user)
-            {:status 201 :body "User created successfully"})))
+(defn insert-user [user]
+  (println "Received user data:" user)
+  (let [validated-user (validate-input user)]
+    (if (not= 400 (:status validated-user))
+      (do
+        (model/insert-user validated-user)
+        (success 201 "User created successfully"))
+        validated-user)))
 
 (defn login-user [username password]
   (let [user (model/get-user-by-username username)]
@@ -39,13 +41,23 @@
 
 (defn get-all-users []
   (let [users (model/get-all-users)]
-    {:status 200 :body (map remove-namespace users)}))
+    (work 200 (map remove-namespace users))))
 
 (defn get-user-by-id [id]
   (let [user (model/get-user-by-id id)]
     (if user
-      {:status 200 :body user}
-      {:status 404 :error "User not found"})))
+      (work 207 user)
+      (error 404 "User not found"))))
+
+(defn update-user [id user]
+  (println "Received user data into controller:" user)
+  (let [existing-user (model/get-user-by-id id)]
+    (if existing-user
+      (let [result (model/update-user id user)]
+        (if (= 1 (:update-count result))
+          (success 200 "User updated")
+          (error 400 "Failed to update user")))
+      (error 404 "User not found"))))
 
 (defn update-user-username [id new-username]
   (let [user (model/get-user-by-id id)]

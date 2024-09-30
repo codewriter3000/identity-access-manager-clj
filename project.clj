@@ -12,7 +12,8 @@
                  [environ "1.2.0"]
                  [org.clojure/tools.logging "1.3.0"]
                  [metosin/ring-http-response "0.9.4"]
-                 [ring/ring-json "0.5.1"]]
+                 [ring/ring-json "0.5.1"]
+                 [metosin/ring-http-response "0.9.4"]]
   :plugins [[lein-ring "0.12.5"]
             [lein-environ "1.2.0"]]
   :ring {:handler iam-clj-api.handler/app

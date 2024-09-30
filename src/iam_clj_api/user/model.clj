@@ -35,8 +35,10 @@
     (map remove-namespace (map #(into {} %) result))))
 
 (defn get-user-by-id [id]
+  (println "ID:" id)
+  (println "ID type:" (type id))
   (let [result (jdbc/execute! ds
-                              ["SELECT id, username, email, first_name, last_name, created_at FROM users WHERE id = ?;" id])]
+                              ["SELECT id, username, email, first_name, last_name, created_at FROM users WHERE id = ?;" (Integer/parseInt id)])]
     (first result)))
 
 (defn get-user-by-username [username]
@@ -44,13 +46,15 @@
                               ["SELECT * FROM users WHERE username = ?;" username])]
     (remove-namespace (first result))))
 
-(defn update-user [id user]
-  (let [filtered-user (into {} (filter (comp some? val) user))
-        set-clause (str/join ", " (map (fn [[k v]] (str (name k) " = ?")) filtered-user))
-        values (concat (vals filtered-user) [id])
-        query (str "UPDATE users SET " set-clause " WHERE id = ?;")]
-    (let [result (jdbc/execute! ds (into [query] values))]
-      {:update-count (:next.jdbc/update-count (first result))})))
+      (defn update-user [id user]
+        (if (empty? user)
+          {:update-count 0}
+          (let [filtered-user (into {} (filter (comp some? val) user))
+                set-clause (str/join ", " (map (fn [[k v]] (str (name k) " = ?")) filtered-user))
+                values (concat (vals filtered-user) [(Integer/parseInt id)]) ; Cast id to integer
+                query (str "UPDATE users SET " set-clause " WHERE id = ?;")]
+            (println "Query:" (into [query] values))
+            (jdbc/execute! ds (into [query] values)))))
 
 (defn update-user-username [id new-username]
   (let [result (jdbc/execute! ds
@@ -72,7 +76,7 @@
 
 (defn delete-user [id]
   (let [result (jdbc/execute! ds
-                              ["DELETE FROM users WHERE id = ?;" id])]
+                              ["DELETE FROM users WHERE id = ?;" (Integer/parseInt id)])]
     {:delete-count (:next.jdbc/update-count (first result))}))
 
 (defn get-roles-for-user [id]

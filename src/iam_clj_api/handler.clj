@@ -27,6 +27,7 @@
 
 (def app-routes
   (routes
+   (wrap-no-anti-forgery (GET "/" [] "API is running"))
    (wrap-no-anti-forgery user-view/user-view-routes)
    (wrap-no-anti-forgery permission-view/permission-view-routes)
    (wrap-no-anti-forgery role-view/role-view-routes)
@@ -35,7 +36,8 @@
 (def app
   (-> app-routes
       (wrap-cors :access-control-allow-origin [#"http://localhost:3000"]
-                 :access-control-allow-methods [:get :put :post :delete])
+                 :access-control-allow-methods [:get :put :post :delete]
+                 :access-control-allow-headers ["Content-Type" "Authorization"])
       (wrap-json-body {:keywords? true :bigdecimals? true})
       wrap-json-response
       log-request))
