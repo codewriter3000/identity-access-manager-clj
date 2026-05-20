@@ -1,6 +1,6 @@
-# iam-clj-api
+# cw3-admin-api
 
-An Identity Access Manager API built with Leiningen.
+The CW3 Admin API built with Leiningen.
 
 ## Prerequisites
 
